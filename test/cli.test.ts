@@ -3,12 +3,14 @@ import { mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterAll, describe, expect, it } from "vitest";
-import { privateKeyToAccount } from "viem/accounts";
-import { CIDS, CHARTER, CONSTITUTION, DATE, SOUL, TEST_PRIVATE_KEY, VERSION } from "./fixtures.js";
+import { generatePrivateKey, privateKeyToAccount } from "viem/accounts";
+import { CIDS, CHARTER, CONSTITUTION, DATE, SOUL, VERSION } from "./fixtures.js";
 
 const cli = join(process.cwd(), "dist", "cli.js");
 const dir = mkdtempSync(join(tmpdir(), "charter-attest-cli-"));
 const payloadPath = join(dir, "payload.json");
+// Throwaway key generated inside the test file; never stored in the repository.
+const TEST_PRIVATE_KEY = generatePrivateKey();
 
 writeFileSync(join(dir, "charter.md"), CHARTER);
 writeFileSync(join(dir, "constitution.md"), CONSTITUTION);

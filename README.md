@@ -140,8 +140,8 @@ Coverage includes:
 ## Security notes
 
 - No private keys, mnemonics or API tokens are stored in this repository or read by the CLI.
-- The two keys in `test/fixtures.ts` are publicly known throwaway keys (Hardhat accounts
-  1 and 2). They exist so signatures are reproducible. Never fund them.
+- Tests generate a fresh throwaway key with viem's `generatePrivateKey()` at runtime; no
+  private key literal is stored in the repository. Never fund a test key.
 - `buildAttestation` validates its input and throws `TypeError` rather than emitting a
   payload with an empty CID, empty version or invalid date.
 

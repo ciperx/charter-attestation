@@ -28,15 +28,3 @@ export const PINNED_SHA256 = {
   constitution: "0653c6a0c292be60703943569ecff252eb943dbfb48de488234900b3add7002a",
   soul: "2ed5791ea631bbdb54a7a5e0e30f585bdb72ac97f6481e9367ad8f2a1f894a12",
 } as const;
-
-/**
- * A fixed, publicly known throwaway private key (Hardhat account #1).
- * It is deliberately in the repository so tests are reproducible; it holds nothing
- * and must never be funded on any network.
- */
-export const TEST_PRIVATE_KEY =
-  "0x59c6995e998f97a5a0044966f0945389dc9e86dae88c7a8412f4603b6b78690d" as const;
-
-/** A second fixed throwaway key, used only to prove the wrong signer is rejected. */
-export const OTHER_TEST_PRIVATE_KEY =
-  "0x8b3a350cf5c34c9194ca85829a2df0ec3153be0318b5e2d3348e872092edffba" as const;

@@ -1,9 +1,9 @@
 import { describe, expect, it } from "vitest";
-import { privateKeyToAccount } from "viem/accounts";
+import { generatePrivateKey, privateKeyToAccount } from "viem/accounts";
 import { recoverTypedDataAddress, verifyTypedData } from "viem";
 import { buildAttestation } from "../src/attestation.js";
 import { buildTypedData, ATTESTATION_EIP712_TYPES } from "../src/eip712.js";
-import { CIDS, CHARTER, CONSTITUTION, DATE, OTHER_TEST_PRIVATE_KEY, SOUL, TEST_PRIVATE_KEY, VERSION } from "./fixtures.js";
+import { CIDS, CHARTER, CONSTITUTION, DATE, SOUL, VERSION } from "./fixtures.js";
 
 const payload = buildAttestation({
   texts: { charter: CHARTER, constitution: CONSTITUTION, soul: SOUL },
@@ -19,6 +19,9 @@ const typed = buildTypedData({
   domain: { chainId: 8453, verifyingContract: "0x00000000000000000000000000000000000000ee" },
 });
 
+// Throwaway keys generated inside the test file. Nothing is stored in the repository.
+const TEST_PRIVATE_KEY = generatePrivateKey();
+const OTHER_TEST_PRIVATE_KEY = generatePrivateKey();
 const account = privateKeyToAccount(TEST_PRIVATE_KEY);
 
 describe("EIP-712 attestation", () => {
